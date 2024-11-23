@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>Ventes</h2>
+  <!-- Bouton d'ajout avec icône -->
+  <button class="btn btn-primary btn-add-vente" [routerLink]="['/component/addvente']">
+    <i class="bi bi-plus-circle"></i> <!-- Icône d'ajout -->
+  </button>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Date de Vente</th>
+      <th>Montant Total</th>
+      <th>Produit</th>
+      <th>Client</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let vente of ventes">
+      <td>{{ vente.dateVente | date }}</td>
+      <td>{{ vente.montantTotal | currency }}</td>
+      <td>{{ vente.produit }}</td>
+      <td>{{ vente.client }}</td>
+      <td>
+        <div class="action-buttons">
+          <!-- Bouton de mise à jour avec icône -->
+          <button class="btn btn-update" [routerLink]="['/component/updatevente', vente.idVente]">
+            <i class="bi bi-pencil"></i> <!-- Icône de mise à jour -->
+          </button>
+          <!-- Bouton de suppression avec icône -->
+          <button class="btn btn-delete" (click)="deleteVente(vente.idVente!)">
+            <i class="bi bi-trash"></i> <!-- Icône de suppression -->
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

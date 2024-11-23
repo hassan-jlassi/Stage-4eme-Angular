@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Service après vente</h2>
+
+  <button class="btn btn-primary btn-add-sav" [routerLink]="['/component/addsav']">
+    <i class="bi bi-plus-circle"></i> <!-- Icône d'ajout -->
+  </button>
+
+  <p>Total de SAVs: {{ totalSavCount }}</p> <!-- Affichage du nombre total -->
+
+</div>
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Numéro de Série</th>
+      <th>IMEI</th>
+      <th>Date de Réception</th>
+      <th>Catégorie</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let sav of savs">
+      <td>{{ sav.numSerie }}</td>
+      <td>{{ sav.imei }}</td>
+      <td>{{ sav.dateReception | date }}</td>
+      <td>{{ sav.categorie }}</td>
+      <td>
+        <div class="action-buttons">
+          <!-- Bouton de mise à jour avec icône -->
+          <button class="btn btn-update" [routerLink]="['/component/updatesav', sav.idProduit]">
+            <i class="bi bi-pencil"></i> <!-- Icône de mise à jour -->
+          </button>
+          <!-- Bouton de suppression avec icône -->
+          <button class="btn btn-delete" (click)="deleteSav(sav.idProduit!)">
+            <i class="bi bi-trash"></i> <!-- Icône de suppression -->
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

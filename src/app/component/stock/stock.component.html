@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>Stocks</h2>
+  <p>Nombre de stocks: {{ stockCount }}</p> <!-- Affiche le nombre de stocks -->
+  <button class="btn btn-primary btn-add-stock" [routerLink]="['/component/addstock']">
+    <i class="bi bi-plus-circle"></i> <!-- Icône d'ajout -->
+  </button>
+</div>
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Numéro de Série</th>
+      <th>IMEI</th>
+      <th>Date de Production</th>
+      <th>Catégorie</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let stock of stocks">
+      <td>{{ stock.numSerie }}</td>
+      <td>{{ stock.imei }}</td>
+      <td>{{ stock.dateProduction | date }}</td>
+      <td>{{ stock.categorie }}</td>
+      <td>
+        <div class="action-buttons">
+          <!-- Bouton de mise à jour avec icône -->
+          <button class="btn btn-update" [routerLink]="['/component/updatestock', stock.idProduit]">
+            <i class="bi bi-pencil"></i> <!-- Icône de modification -->
+          </button>
+          <!-- Bouton de suppression avec icône -->
+          <button class="btn btn-delete" (click)="deleteStock(stock.idProduit!)">
+            <i class="bi bi-trash"></i> <!-- Icône de suppression -->
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
